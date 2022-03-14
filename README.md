@@ -3,7 +3,7 @@
 
 ## 使用
 ```javascript
-import VCsubscribePublic from 'VC-subscribe-public'
+import VCsubscribePublic from 'vc-subscribe-public'
 
 /**
  * 添加订阅
