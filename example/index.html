@@ -1,43 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>eventBus</title>
-</head>
+  </head>
 
-<body>
-<input name="kkk" placeholder="自定义参数" value="自定义参数" />
-<button type="button" id="button3">
-    订阅事件
-</button>
-<button type="button" id="button">
-    发布订阅
-</button>
-<button type="button" id="button2">
-    移除订阅
-</button>
+  <body>
+    <input name="kkk" placeholder="自定义参数" value="自定义参数" />
+    <button type="button" id="button3">订阅事件</button>
+    <button type="button" id="button4">订阅事件2</button>
+    <button type="button" id="button">发布订阅</button>
+    <button type="button" id="button2">移除订阅</button>
 
-<h2>结果:<p id="result"></p></h2>
-<script type="module">
-    import VCSubscribePublic from '../index.js'
-    /**
-     * 事件发布
-     */
-    document.querySelector('#button').addEventListener('click',function(k){
-      VCSubscribePublic.public('example',document.querySelector('input[name="kkk"]').value);
-    })
-    document.querySelector('#button2').addEventListener('click',function(k){
-      VCSubscribePublic.unsubscribe('example');
-    })
-    document.querySelector('#button3').addEventListener('click',function(k){
-      VCSubscribePublic.subscribe('example',function(k){
-            const dom = document.createDocumentFragment();
-            dom.textContent = k[0];
-            document.querySelector('#result').appendChild(dom);
+    <h2>
+      结果:
+      <p id="result"></p>
+    </h2>
+    <script type="module">
+      import VCSubscribePublic from '../index.js'
+      /**
+       * 事件发布
+       */
+      document.querySelector('#button').addEventListener('click', function (k) {
+        VCSubscribePublic.public(
+          'example',
+          document.querySelector('input[name="kkk"]').value
+        )
+      })
+      document
+        .querySelector('#button2')
+        .addEventListener('click', function (k) {
+          VCSubscribePublic.unsubscribe('example')
         })
-    })
-
-</script>
-</body>
-
+      document
+        .querySelector('#button3')
+        .addEventListener('click', function (k) {
+          VCSubscribePublic.subscribe('example', function (k) {
+            const dom = document.createDocumentFragment()
+            dom.textContent = k[0]
+            document.querySelector('#result').appendChild(dom)
+          })
+        })
+      document
+        .querySelector('#button4')
+        .addEventListener('click', function (k) {
+          VCSubscribePublic.subscribe('example', function (k) {
+            const dom = document.createDocumentFragment()
+            dom.textContent = k[0]
+            document.querySelector('#result').appendChild(dom)
+          })
+        })
+    </script>
+  </body>
 </html>
